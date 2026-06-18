@@ -39,6 +39,7 @@ jobs:
           mkdir -p gradle/wrapper
           curl -sL "https://services.gradle.org/distributions/gradle-8.2.0-wrapper.jar" -o gradle/wrapper/gradle-wrapper.jar
           chmod +x gradlew
+          sed -i 's/\r$//' gradlew
 
       - name: 🏗️ 构建 Debug APK
         run: ./gradlew assembleDebug --console=plain --no-daemon
