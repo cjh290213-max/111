@@ -1,11 +1,11 @@
-﻿pluginManagement {
+pluginManagement {
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
 }
-@Suppress(\"UnstableApiUsage\")
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = \"GameSpinner\"
-include(\":app\")
+rootProject.name = "GameSpinner"
+include(":app")
