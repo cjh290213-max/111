@@ -142,11 +142,11 @@ if "$cygwin" || "$msys" ; then
 
     # Now convert the arguments - kludge to limit was to the
     # Groovy runtime.
-    for i do
+        for i do
         case $i in
-        #(  *-D* ) ;;
-        #(  *-D* ) ;;
-        #(  * )
+        -D*)
+            ;;
+        *)
             set -- "$@" "$i"
             ;;
         esac
