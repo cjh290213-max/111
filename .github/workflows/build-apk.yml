@@ -3,6 +3,8 @@ name: Build Android APK
 on:
   push:
     branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
   workflow_dispatch:
 
 jobs:
@@ -19,14 +21,18 @@ jobs:
           java-version: "17"
           distribution: "temurin"
 
-      - name: 🛠️ 设置 Gradle
+      - name: 🛠️ 设置 Gradle 并缓存
         uses: gradle/actions/setup-gradle@v3
 
-      - name: 🛠️ 设置 Android SDK
-        uses: android-actions/setup-android@v3
+      - name: 📦 安装 Android SDK 34
+        run: |
+          echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-34" "build-tools;34.0.0" > /dev/null 2>&1 || true
+
+      - name: 🔧 给 gradlew 加执行权限
+        run: chmod +x gradlew
 
       - name: 🏗️ 构建 Debug APK
-        run: gradle assembleDebug --console=plain --no-daemon
+        run: ./gradlew assembleDebug --console=plain --no-daemon
 
       - name: 📦 上传 APK 产物
         uses: actions/upload-artifact@v4
