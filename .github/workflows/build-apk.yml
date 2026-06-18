@@ -34,11 +34,8 @@ jobs:
       - name: 🧹 修复 gradlew BOM 编码
         run: sed -i '1s/^\xEF\xBB\xBF//' gradlew
         
-      - name: 🔧 替换为官方 gradlew
-        run: |
-          rm -f gradlew
-          wget -q https://raw.githubusercontent.com/gradle/gradle/v8.2.0/gradlew
-          chmod +x gradlew
+      - name: 🔧 生成 Gradle Wrapper
+        run: gradle wrapper --gradle-version 8.2.0
 
       - name: 🏗️ 构建 Debug APK
         run: ./gradlew assembleDebug --console=plain --no-daemon
