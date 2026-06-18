@@ -30,8 +30,10 @@ jobs:
 
       - name: 🔧 给 gradlew 加执行权限
         run: chmod +x gradlew
+        
       - name: 🧹 修复 gradlew BOM 编码
         run: sed -i '1s/^\xEF\xBB\xBF//' gradlew
+        
       - name: 🏗️ 构建 Debug APK
         run: ./gradlew assembleDebug --console=plain --no-daemon
 
